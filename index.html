@@ -78,6 +78,52 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+
+  <style>
+    /* 为 Methodology 标题添加上下空白 */
+    h2.title.is-3.has-text-centered {
+      margin-top: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* 为内容段落添加下方空白 */
+    .content p {
+      margin-bottom: 2rem;
+    }
+
+    /* 为每个 figure 添加上下空白 */
+    figure.image {
+      margin-top: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    /* 为 figcaption 添加上方空白 */
+    figure.image figcaption {
+      margin-top: 1rem;
+    }
+
+    /* 默认样式 */
+    .key-features .column {
+      flex: 0 0 40%;
+      max-width: 40%;
+      padding: 0.75rem;
+    }
+
+    /* 当屏幕宽度小于 768px 时，调整 key-features 的子元素宽度 */
+    @media (max-width: 768px) {
+      .key-features .column {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }
+
+    .table-caption {
+      caption-side: top;
+      text-align: left;
+      padding-bottom: 0.5em;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body onload="updateInteractive();">
 
@@ -126,7 +172,7 @@
             <div class="publication-links">
               <!-- PDF Link. -->
               <!-- <span class="link-block">
-                <a target="_blank" href="voxposer.pdf"
+                <a target="_blank" href=""
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -137,7 +183,7 @@
 
             <!-- Arxiv Link. -->
             <!-- <span class="link-block">
-              <a target="_blank" href="https://arxiv.org/abs/2307.05973"
+              <a target="_blank" href="https://arxiv.org/"
                  class="external-link button is-normal is-rounded is-dark">
                 <span class="icon">
                     <i class="fas fa-file"></i>
@@ -159,7 +205,7 @@
 
             <!-- Code Link. -->
             <!-- <span class="link-block">
-              <a target="_blank" href="https://github.com/huangwl18/VoxPoser"
+              <a target="_blank" href="https://github.com/"
                  class="external-link button is-normal is-rounded is-dark">
                 <span class="icon">
                     <i class="fab fa-github"></i>
@@ -279,24 +325,377 @@
 
 <section class="section">
   <div class="container is-max-desktop">
-    <!-- Abstract. -->
+    <!-- Abstract -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Affordance understanding, the task of identifying actionable regions on 3D objects, is critical for enabling robotic systems to interact with the physical world. Although Visual Language Models (VLMs) have excelled in high-level reasoning and long-horizon planning for robotic manipulation, they still fall short in grasping the nuanced physical properties required for effective human-robot interaction. In this paper, we introduce PAVLM (Point cloud Affordance Vision-Language Model), a novel framework that leverages the rich multimodal knowledge embedded in pre-trained language models to en- hance 3D affordance understanding of point cloud. PAVLM integrates a geometric-guided propagation module with hidden embeddings from large language models (LLMs) to enrich visual semantics. On the language side, we prompt LLaMa- 3.1 models to generate refined context-aware text, augmenting the instructional input with deeper semantic cues. Experimental results on the 3D-AffordanceNet benchmark demonstrate that PAVLM outperforms baseline methods for both full and partial point clouds, particularly excelling in its generalization to novel open-world affordance tasks of 3D objects. For more information, visit our project site: 3d-affordance-llm.com.
+            Affordance understanding, the task of identifying actionable regions on 3D objects, is critical for enabling robotic systems to interact with the physical world. Although Visual Language Models (VLMs) have excelled in high-level reasoning and long-horizon planning for robotic manipulation, they still fall short in grasping the nuanced physical properties required for effective human-robot interaction. In this paper, we introduce PAVLM (Point cloud Affordance Vision-Language Model), a novel framework that leverages the rich multimodal knowledge embedded in pre-trained language models to enhance 3D affordance understanding of point cloud. PAVLM integrates a geometric-guided propagation module with hidden embeddings from large language models (LLMs) to enrich visual semantics. On the language side, we prompt LLaMa-3.1 models to generate refined context-aware text, augmenting the instructional input with deeper semantic cues. Experimental results on the 3D-AffordanceNet benchmark demonstrate that PAVLM outperforms baseline methods for both full and partial point clouds, particularly excelling in its generalization to novel open-world affordance tasks of 3D objects.
           </p>
         </div>
       </div>
     </div>
-    <!--/ Abstract. -->
+
+
+    
+    <!-- Key Features and Methodology -->
+
+    <div class="columns is-centered has-text-centered key-features">
+      <div class="column is-two-fifths">
+        <h2 class="title is-3">Key Features</h2>
+        <div class="content has-text-justified">
+          <ul>
+            <li>Integration of VLMs and LLMs</li>
+            <li>Geometric-guided propagation module</li>
+            <li>Effective on full and partial point clouds</li>
+            <li>Superior open-world performance</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+    <h2 class="title is-3 has-text-centered">Methodology</h2>
+    <div class="content">
+      <p>PAVLM combines the strengths of visual and language models to enhance 3D affordance understanding. Specifically, our geometric-guided propagation module enriches visual semantics, while LLaMa-3.1 generates refined, context-aware text instructions to better guide the robot's actions. In the following sections, we will delve into the architecture of the key components, starting with the Geometric-guided Point Encoder and Decoder. The diagram visually illustrates the overall architecture of PAVLM, highlighting the interaction between the visual and language models.</p>
+    </div>
+    <figure class="image">
+      <img src="media/figures/fig2.png" alt="Visualization of affordance prediction results on multiple unseen objects and categories" >
+      <figcaption>Our PAVLM pipeline is designed to directly encode point cloud data. We first devise a geometric-guided propagation module to extract point features. Meanwhile, Llama-3.1 is tasked with generating richer and more detailed textual instructions. Both visual and textual embeddings are aligned through the 3D Image-Bind approach, with the combined features fed into the multi-modal LLM (Llama-2) for mask label generation. Finally, the per-point feature embeddings are multiplied by the  &lt;mask label&gt; token and input into a 3D affordance decoder to generate the final affordance map. The following figure provides a detailed view of the PAVLM pipeline, illustrating each stage, from point cloud encoding to affordance map generation.</figcaption>
+    </figure>
+    <figure class="image">
+      <img src="media/figures/fig3.png" alt="Visualization of affordance prediction results on multiple unseen objects and categories" style="width: 75%;; height: auto;">
+      <figcaption>The diagram illustrates the architecture of the proposed Geometric-guided Point Encoder and Decoder within the PAVLM pipeline. It highlights the two core components: the geometric information extraction module and the feature propagation module. As shown in the figure, the point cloud data is divided into patches and processed through a series of transformer blocks to extract refined geometric features, while the decoder handles feature propagation and ensures that point-wise affordance information is accurately distributed across the point cloud.</figcaption>
+    </figure>
+    <figure class="image">
+      <img src="media/figures/fig4.png" alt="Visualization of affordance prediction results on multiple unseen objects and categories" style="width: 70%; height: auto;">
+      <figcaption>We use an augmentation prompt template to enhance the diversity of generated question-answer pairs, improving the model's contextual understanding. This strategy is particularly important for ensuring flexibility in robotic interactions. As demonstrated in the accompanying diagram, the system generates multiple versions of question-answer pairs based on a seed input.</figcaption>
+    </figure>
+
+
+    <!-- Experimental Results -->
+    <h2 class="title is-3 has-text-centered">Experimental Results</h2>
+    
+    <div class="content">
+      <p>We conducted extensive experiments to evaluate PAVLM's performance. Our ablation studies examined the effects of different text prompts and vision encoders, while comparisons with state-of-the-art methods demonstrated PAVLM's superiority in both seen and unseen object categories.</p>
+    </div>
+
+    <div class="columns is-multiline">
+      <div class="column is-half">
+        <h3 class="title is-5">Ablation Study: Text Prompts</h3>
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+          <caption class="table-caption">Table 1: Ablation study of different text prompts.</caption>
+          <thead>
+            <tr>
+              <th>Point cloud</th>
+              <th>Text Prompt</th>
+              <th>mAP↑</th>
+              <th>AUC↑</th>
+              <th>aIOU↑</th>
+              <th>MSE↓</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Full-shape (Aug.)</td>
+              <td>Ours</td>
+              <td>45.7</td>
+              <td>86.9</td>
+              <td>16.8</td>
+              <td>0.45</td>
+            </tr>
+            <tr>
+              <td>Full-shape</td>
+              <td>Ours</td>
+              <td><strong>46.0</strong></td>
+              <td>87.1</td>
+              <td><strong>17.1</strong></td>
+              <td><strong>0.44</strong></td>
+            </tr>
+            <tr>
+              <td>Full-shape</td>
+              <td>Object, Action</td>
+              <td>44.5</td>
+              <td>85.6</td>
+              <td>16.0</td>
+              <td>0.67</td>
+            </tr>
+            <tr>
+              <td>Full-shape</td>
+              <td>Action</td>
+              <td>45.4</td>
+              <td><strong>87.2</strong></td>
+              <td>16.7</td>
+              <td>0.45</td>
+            </tr>
+            <tr>
+              <td>Full-shape</td>
+              <td>Hi</td>
+              <td>11.4</td>
+              <td>51.9</td>
+              <td>0.4</td>
+              <td>0.90</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="column is-half">
+        <h3 class="title is-5">Ablation Study: Vision Encoders</h3>
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+          <caption class="table-caption">Table 2: Ablation study of different vision encoders.</caption>
+          <thead>
+            <tr>
+              <th>Point cloud</th>
+              <th>Vision encoder</th>
+              <th>mAP↑</th>
+              <th>AUC↑</th>
+              <th>aIOU↑</th>
+              <th>MSE↓</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Full-shape</td>
+              <td>PointNet++</td>
+              <td>47.1</td>
+              <td>86.2</td>
+              <td><strong>18.1</strong></td>
+              <td><strong>0.36</strong></td>
+            </tr>
+            <tr>
+              <td>Full-shape</td>
+              <td>DGCNN</td>
+              <td>31.0</td>
+              <td>72.9</td>
+              <td>1.0</td>
+              <td>0.68</td>
+            </tr>
+            <tr>
+              <td>Full-shape</td>
+              <td>Ours</td>
+              <td><strong>48.5</strong></td>
+              <td><strong>86.8</strong></td>
+              <td>17.7</td>
+              <td><strong>0.36</strong></td>
+            </tr>
+            <tr>
+              <td>Partial-shape</td>
+              <td>PointNet++</td>
+              <td>25.3</td>
+              <td>69.8</td>
+              <td>3.4</td>
+              <td>0.73</td>
+            </tr>
+            <tr>
+              <td>Partial-shape</td>
+              <td>DGCNN</td>
+              <td>26.8</td>
+              <td>69.7</td>
+              <td>0.7</td>
+              <td>0.67</td>
+            </tr>
+            <tr>
+              <td>Partial-shape</td>
+              <td>Ours</td>
+              <td><strong>40.2</strong></td>
+              <td><strong>82.2</strong></td>
+              <td><strong>11.7</strong></td>
+              <td><strong>0.39</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="column is-half">
+        <h3 class="title is-5">Comparison: Seen Categories</h3>
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+          <caption class="table-caption">Table 3: Comparison results with baselines on the seen split of dataset</caption>
+          <thead>
+            <tr>
+              <th>Point cloud</th>
+              <th>Method</th>
+              <th>mAP↑</th>
+              <th>AUC↑</th>
+              <th>aIOU↑</th>
+              <th>MSE↓</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Full-shape rows -->
+            <tr>
+              <td>Full-shape</td>
+              <td>PointCLIP</td>
+              <td>7.6</td>
+              <td>49.9</td>
+              <td>0.9</td>
+              <td>0.80</td>
+            </tr>
+            <tr>
+              <td>Full-shape</td>
+              <td>PointCLIP V2</td>
+              <td>7.6</td>
+              <td>50.0</td>
+              <td>0.8</td>
+              <td>0.70</td>
+            </tr>
+            <tr>
+              <td>Full-shape</td>
+              <td>Ours (frozen)</td>
+              <td>46.3</td>
+              <td><strong>86.9</strong></td>
+              <td>17.1</td>
+              <td>0.44</td>
+            </tr>
+            <tr>
+              <td>Full-shape</td>
+              <td>Ours</td>
+              <td><strong>48.5</strong></td>
+              <td>86.8</td>
+              <td><strong>17.7</strong></td>
+              <td><strong>0.36</strong></td>
+            </tr>
+      
+            <!-- Partial-shape rows -->
+            <tr>
+              <td>Partial-shape</td>
+              <td>PointCLIP</td>
+              <td>9.1</td>
+              <td>50.1</td>
+              <td>1.1</td>
+              <td>0.78</td>
+            </tr>
+            <tr>
+              <td>Partial-shape</td>
+              <td>PointCLIP V2</td>
+              <td>9.2</td>
+              <td>49.9</td>
+              <td>1.4</td>
+              <td>0.66</td>
+            </tr>
+            <tr>
+              <td>Partial-shape</td>
+              <td>Ours (frozen)</td>
+              <td>37.2</td>
+              <td>64.2</td>
+              <td>11.4</td>
+              <td><strong>0.36</strong></td>
+            </tr>
+            <tr>
+              <td>Partial-shape</td>
+              <td>Ours</td>
+              <td><strong>40.2</strong></td>
+              <td><strong>82.2</strong></td>
+              <td><strong>11.7</strong></td>
+              <td>0.39</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="column is-half">
+        <h3 class="title is-5">Comparison: Unseen Categories</h3>
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+          <caption class="table-caption">Table 4: Comparison results with baselines on the unseen split of dataset</caption>
+          <thead>
+            <tr>
+              <th>Point cloud</th>
+              <th>Method</th>
+              <th>mAP↑</th>
+              <th>AUC↑</th>
+              <th>aIOU↑</th>
+              <th>MSE↓</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Full-shape rows -->
+            <tr>
+              <td>Full-shape</td>
+              <td>PointCLIP</td>
+              <td>3.7</td>
+              <td>49.9</td>
+              <td>0.5</td>
+              <td>1.58</td>
+            </tr>
+            <tr>
+              <td>Full-shape</td>
+              <td>PointCLIP V2</td>
+              <td>3.7</td>
+              <td>49.3</td>
+              <td>0.4</td>
+              <td>0.91</td>
+            </tr>
+            <tr>
+              <td>Full-shape</td>
+              <td>Ours (frozen)</td>
+              <td>11.8</td>
+              <td><strong>60.3</strong></td>
+              <td>1.5</td>
+              <td>0.78</td>
+            </tr>
+            <tr>
+              <td>Full-shape</td>
+              <td>Ours</td>
+              <td><strong>12.1</strong></td>
+              <td>53.9</td>
+              <td><strong>2.6</strong></td>
+              <td><strong>0.51</strong></td>
+            </tr>
+      
+            <!-- Partial-shape rows -->
+            <tr>
+              <td>Partial-shape</td>
+              <td>PointCLIP</td>
+              <td>4.7</td>
+              <td>50.2</td>
+              <td>0.6</td>
+              <td>1.14</td>
+            </tr>
+            <tr>
+              <td>Partial-shape</td>
+              <td>PointCLIP V2</td>
+              <td>4.7</td>
+              <td>50.3</td>
+              <td>0.38</td>
+              <td>0.93</td>
+            </tr>
+            <tr>
+              <td>Partial-shape</td>
+              <td>Ours (frozen)</td>
+              <td>13.8</td>
+              <td>60.3</td>
+              <td>2.0</td>
+              <td><strong>0.60</strong></td>
+            </tr>
+            <tr>
+              <td>Partial-shape</td>
+              <td>Ours</td>
+              <td><strong>22.3</strong></td>
+              <td><strong>63.2</strong></td>
+              <td><strong>2.1</strong></td>
+              <td>0.82</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    <div class="content">
+      <p>Our results show that PAVLM consistently outperforms baseline methods across various metrics. The ablation studies reveal that comprehensive question prompts and our proposed geometric-guided point encoder contribute significantly to the model's performance. Furthermore, PAVLM demonstrates strong generalization capabilities, particularly in handling unseen object categories.</p>
+    </div>
+  
+
+    <div class="container">
+      <h2 class="title is-3 has-text-centered">Visualization of Results</h2>
+      <figure class="image">
+        <img src="media/figures/affordance_prediction_visualization.png" alt="Visualization of affordance prediction results on multiple unseen objects and categories" style="width: 90%; height: auto;">
+        <figcaption>Visualization of affordance prediction results on multiple unseen objects and categories, showing that our model predicts accurate affordances guided by different instructions from the original partial point cloud.</figcaption>
+      </figure>
+    </div>
 
   </div>
+</section>
 
-  <!-- Paper video. -->
-  <br>
-  <br>
 
 <section class="section" id="BibTeX">
   <div class="container is-max-widescreen content">

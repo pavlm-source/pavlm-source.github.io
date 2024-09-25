@@ -186,3 +186,60 @@ body {
   text-align: justify;
 }
 
+.section {
+  padding-top: 0px; /* 调整这个值以减少空格 */
+}
+
+.section .title.is-3 {
+  margin-top: 10px; /* 调整这个值以减少空格 */
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.centered-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 默认样式 */
+.key-features .column {
+  flex: 0 0 40%;
+  max-width: 40%;
+  padding: 0.75rem;
+}
+
+/* 当屏幕宽度小于 768px 时，调整 key-features 的子元素宽度 */
+@media (max-width: 768px) {
+  .key-features .column {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/* 为 Methodology 标题添加上下空白 */
+h2.title.is-3.has-text-centered {
+  margin-top: 2rem;
+  margin-bottom: 1rem; /* 减少底部边距 */
+}
+
+/* 为���容段落添加下方空白 */
+.content p {
+  margin-bottom: 1.5rem; /* 减少段落底部边距 */
+}
+
+/* 为每个 figure 添加上下空白 */
+figure.image {
+  margin-top: 1.5rem; /* 减少顶部边距 */
+  margin-bottom: 3rem;
+}
+
+/* 为 figcaption 添加上方空白 */
+figure.image figcaption {
+  margin-top: 1rem;
+}
+
